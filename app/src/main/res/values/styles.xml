@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyStyle.NumberPicker" parent="@android:style/Widget.Material.NumberPicker" >
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="colorControlNormal">#06255d</item>
+    </style>
+    <style name="cardview">
+        <item name="android:background">#e5eef3</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e5eef3"
+    tools:context=".StopwatchActivity">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomnavbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#06255d"
+        app:labelVisibilityMode="selected"
+        app:itemIconTint="@drawable/bottomnav_color"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav" />
+    <TextView
+        android:id="@+id/lap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgcircle"
+        app:layout_constraintBottom_toTopOf="@id/stp_start"/>
+
+    <Chronometer
+        android:id="@+id/stpwatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="50dp"
+        android:textColor="#06255d"
+        app:layout_constraintBottom_toTopOf="@id/stp_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgcircle"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/stp_start"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#2196F3"
+        android:paddingHorizontal="60dp"
+        android:paddingVertical="15dp"
+        android:text="start"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomnavbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stpwatch" />
+
+    <Button
+        android:id="@+id/stp_pause"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00796B"
+        android:paddingHorizontal="0dp"
+        android:paddingVertical="15dp"
+        android:text="pause"
+        android:textSize="18sp"
+        app:cornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomnavbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stp_start"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent="0.8" />
+<androidx.cardview.widget.CardView
+    android:layout_width="360dp"
+    android:layout_height="360dp"
+    android:backgroundTint="#211D44"
+    app:cardCornerRadius="250sp"
+    app:layout_constraintTop_toTopOf="@id/imganchor"
+    app:layout_constraintBottom_toBottomOf="@id/imganchor"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"/>
+    <ImageView
+        android:id="@+id/imgcircle"
+        android:layout_width="300sp"
+        android:layout_height="300sp"
+        android:translationZ="20sp"
+        android:background="@drawable/bgcircle"
+        app:layout_constraintBottom_toTopOf="@id/stpwatch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47000003" />
+
+    <ImageView
+        android:id="@+id/imganchor"
+        android:layout_width="360sp"
+        android:layout_height="360sp"
+        android:translationZ="30sp"
+        android:background="@drawable/icanchor"
+        android:rotation="34"
+        app:layout_constraintBottom_toTopOf="@id/stpwatch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
