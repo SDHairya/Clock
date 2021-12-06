@@ -42,7 +42,7 @@ class AlarmAdapter (var context: Context, var alarmlist: ArrayList<alarm>) : Bas
         val switch=view.findViewById<Switch>(R.id.on_off)
 
 
-        switch.isChecked=true
+        switch.isChecked=alarmlist[position].isReminder
         if(MainActivity.t_list==null)
         {
 

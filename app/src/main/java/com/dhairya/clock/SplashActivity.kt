@@ -1,5 +1,8 @@
 package com.dhairya.clock
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.AnimationDrawable
@@ -20,6 +23,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         setStatusBarTransparent()
+//        createNotificationChannel()
         supportActionBar?.hide()
 
         val imgview = findViewById<ImageView>(R.id.image)
@@ -31,10 +35,9 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(this)
             }
             finish()
-        }, 1000)
+        }, 500)
 
-//            f
-        }
+    }
 
     private fun setStatusBarTransparent() {
         if (Build.VERSION.SDK_INT in 19..20) {
@@ -62,4 +65,22 @@ class SplashActivity : AppCompatActivity() {
         }
         window.attributes = winParameters
     }
+
+//    private fun createNotificationChannel() {
+//        val notificationManager =
+//            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val description = "Channel for sending notes notification"
+//            val importance = NotificationManager.IMPORTANCE_HIGH
+//            val channel = NotificationChannel(channelId, channelName, importance)
+//            channel.description = description
+//            channel.vibrationPattern = longArrayOf(0, 1000, 500, 1000)
+//            channel.enableVibration(true)
+//            notificationManager.createNotificationChannel(channel)
+//        }
+//    }
 }
+
+//const val channelId = "alarmChannel"
+//const val channelName = "Alarm Channel"

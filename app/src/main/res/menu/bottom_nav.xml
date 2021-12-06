@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:id="@+id/alarm"
-    android:title="Alarm"
-    android:icon="@drawable/ic_twotone_access_alarms_24"
-    android:iconTint="@color/black"/>
-<item
-    android:id="@+id/stopwatch"
-    android:title="Stopwatch"
-    android:icon="@drawable/ic_baseline_timer_24"
-    android:iconTint="@color/black"/>
-<item
-    android:id="@+id/timer"
-    android:title="Timer"
-    android:icon="@drawable/ic_baseline_hourglass_bottom_24"
-    android:iconTint="@color/black"/>
+    <item
+        android:id="@+id/alarm"
+        android:icon="@drawable/ic_twotone_access_alarms_24"
+        android:iconTint="@color/black"
+        android:title="Alarm" />
+    <item
+        android:id="@+id/clock"
+        android:icon="@drawable/ic_baseline_access_time_24"
+        android:iconTint="@color/black"
+        android:title="Clock" />
+    <item
+        android:id="@+id/stopwatch"
+        android:icon="@drawable/ic_baseline_timer_24"
+        android:iconTint="@color/black"
+        android:title="Stopwatch" />
+    <item
+        android:id="@+id/timer"
+        android:icon="@drawable/ic_baseline_hourglass_bottom_24"
+        android:iconTint="@color/black"
+        android:title="Timer" />
 </menu>

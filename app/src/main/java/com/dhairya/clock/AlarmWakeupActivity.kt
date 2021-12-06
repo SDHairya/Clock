@@ -1,19 +1,49 @@
 package com.dhairya.clock
 
+import android.app.KeyguardManager
+import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.AnimationDrawable
+import android.icu.text.SimpleDateFormat
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
+import android.view.Window
 
-class RingActivity : AppCompatActivity() {
+import android.view.WindowManager
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.widget.ConstraintLayout
+import java.lang.String.format
+import java.text.MessageFormat.format
+import java.util.*
+
+class AlarmWakeupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ring)
+
+        setShowWhenLocked(true)
+        setTurnScreenOn(true)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD)
+        window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
+        window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         setStatusBarTransparent()
+        setContentView(R.layout.activity_alarm_wakeup)
+        val calendar = Calendar.getInstance()
+        val mdformat = SimpleDateFormat("HH:mm")
+        val strDate = mdformat.format(calendar.time)
+        val txt_time=findViewById<TextView>(R.id.txt_time)
+        val stp_btn=findViewById<AppCompatButton>(R.id.stp_btn)
 
+        stp_btn.setOnClickListener {
+            finish()
+            val alarm:AlarmBroadcastReceiver=AlarmBroadcastReceiver()
+            alarm.stop()
+        }
 
+        txt_time.text=strDate
     }
     private fun setStatusBarTransparent() {
         if (Build.VERSION.SDK_INT in 19..20) {

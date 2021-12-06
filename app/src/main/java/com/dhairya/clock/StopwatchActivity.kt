@@ -10,10 +10,7 @@ import android.os.SystemClock
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.Chronometer
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class StopwatchActivity : AppCompatActivity() {
@@ -53,6 +50,13 @@ class StopwatchActivity : AppCompatActivity() {
 
                     return@setOnItemSelectedListener true
                 }
+                R.id.clock -> {
+                    Intent(this, WorldClock::class.java).apply {
+                        startActivity(this)
+                    }
+
+                    return@setOnItemSelectedListener true
+                }
                 else -> {
                     Intent(this, MainActivity::class.java).apply {
                         startActivity(this)
@@ -66,7 +70,7 @@ class StopwatchActivity : AppCompatActivity() {
 
             val animationScale = AnimationUtils.loadAnimation(this, R.anim.rotate)
             imganchor.startAnimation(animationScale)
-
+            imganchor.rotation=imganchor.rotation
             stp_pause.alpha = 1F
             if(paused==true)
             {

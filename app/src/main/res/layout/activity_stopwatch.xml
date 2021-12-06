@@ -103,7 +103,6 @@
         android:layout_height="360sp"
         android:translationZ="30sp"
         android:background="@drawable/icanchor"
-        android:rotation="34"
         app:layout_constraintBottom_toTopOf="@id/stpwatch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

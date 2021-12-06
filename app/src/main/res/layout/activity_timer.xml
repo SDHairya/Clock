@@ -24,6 +24,7 @@
         android:layout_width="0dp"
         app:cardCornerRadius="30dp"
         android:layout_height="0dp"
+        android:background="#403C3C3C"
         android:backgroundTint="#403C3C3C"
         app:cardElevation="100dp"
         app:layout_constraintWidth_percent="0.85"

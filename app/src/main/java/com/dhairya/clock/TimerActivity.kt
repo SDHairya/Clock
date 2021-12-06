@@ -140,6 +140,13 @@ class TimerActivity : AppCompatActivity()  {
 
                     return@setOnItemSelectedListener true
                 }
+                R.id.clock -> {
+                    Intent(this, WorldClock::class.java).apply {
+                        startActivity(this)
+                    }
+
+                    return@setOnItemSelectedListener true
+                }
                 else -> {
                     Intent(this, MainActivity::class.java).apply {
                         startActivity(this)
@@ -172,6 +179,9 @@ class TimerActivity : AppCompatActivity()  {
 
             override fun onFinish() {
                 timerrunning=false
+                Intent(this@TimerActivity,TimerFinishActivity::class.java).apply {
+                    startActivity(this)
+                }
             }
 
         }.start()
@@ -180,12 +190,12 @@ class TimerActivity : AppCompatActivity()  {
 
 
     }
-    private fun pauseTimer()
+    fun pauseTimer()
     {
         countdowntimer.cancel()
         timerrunning=false
     }
-    private fun resetTimer()
+    fun resetTimer()
     {
         time_left=0
         updatecountdowntext()

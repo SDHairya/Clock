@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e5eef3"
-    tools:context=".MainActivity">
+    tools:context=".WorldClock">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnavbar"
@@ -22,32 +22,26 @@
         app:menu="@menu/bottom_nav" />
 
     <TextView
-        android:id="@+id/txt_alarm"
-        android:layout_width="match_parent"
+        android:id="@+id/txt_world"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="25sp"
+        android:paddingStart="20sp"
         android:paddingTop="30sp"
-        android:text="Alarm"
+        android:text="World Clock"
         android:textColor="#323030"
         android:textSize="40sp"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/lv_alarms"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:divider="#00E5EEF3"
-        app:layout_constraintBottom_toTopOf="@id/add_alarm"
-        app:layout_constraintTop_toBottomOf="@id/txt_alarm"
-        tools:listitem="@layout/list_item" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_alarm"
+        android:id="@+id/add_clock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#f93b76"
         android:src="@drawable/ic_baseline_add_24"
         android:translationZ="20sp"
+        android:clickable="true"
         app:layout_constraintBottom_toTopOf="@id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,4 +56,24 @@
         app:layout_constraintBottom_toTopOf="@id/bottomnavbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/add_clock"
+        app:layout_constraintHeight_percent="0.73"
+        app:layout_constraintTop_toBottomOf="@id/txt_world">
+
+        <ListView
+            android:id="@+id/lv_clocks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#00E5EEF3"
+            app:layout_constraintBottom_toTopOf="@id/bottomnavbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/listitem" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

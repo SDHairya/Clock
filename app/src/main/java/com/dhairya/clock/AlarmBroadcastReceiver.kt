@@ -22,11 +22,22 @@ class AlarmBroadcastReceiver : BroadcastReceiver() {
         // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
 
 
-        if(intent != null) {
+        if (intent != null) {
             mp = MediaPlayer.create(context, R.raw.alarm);
             mp?.start()
+            val alarmIntent = Intent(context, AlarmWakeupActivity::class.java)
+            alarmIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(alarmIntent)
         }
 
 
+    }
+
+    fun stop() {
+        if (mp != null) {
+            mp!!.reset()
+            mp!!.release();
+            mp = null;
+        }
     }
 }

@@ -8,11 +8,14 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.TextKeyListener.clear
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -21,11 +24,11 @@ class MainActivity : AppCompatActivity() {
     val listItems = alarm.alarmArray as ArrayList<alarm>
     val adapter = AlarmAdapter(this, listItems)
     var t = ArrayList<Calendar>()
+    lateinit var sharedPreferences: SharedPreferences
 
-
-    companion object
-    {
-        val t_list=ArrayList<Calendar>()
+    companion object {
+        val t_list = ArrayList<Calendar>()
+        var alarm_running: Boolean = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,27 +36,45 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         createNotificationChannel()
         setStatusBarTransparent()
-        val sharedPreferences: SharedPreferences = this.getSharedPreferences("myprefs", MODE_PRIVATE)
-
 
         val add_alarm = findViewById<FloatingActionButton>(R.id.add_alarm)
-
 
         val lvAlarm = findViewById<ListView>(R.id.lv_alarms)
         lvAlarm.adapter = adapter
 
         add_alarm.setOnClickListener {
-            showTimerDialog()
+            val mcurrentTime: Calendar = Calendar.getInstance()
+            val hour: Int = mcurrentTime.get(Calendar.HOUR_OF_DAY)
+            val minute: Int = mcurrentTime.get(Calendar.MINUTE)
+            val mTimePicker = TimePickerDialog(
+                this,
+                { _, selectedHour, selectedMinute ->
+                    val alarmCalendar = Calendar.getInstance()
+                    val year: Int = alarmCalendar.get(Calendar.YEAR)
+                    val month: Int = alarmCalendar.get(Calendar.MONTH)
+                    val day: Int = alarmCalendar.get(Calendar.DATE)
+                    alarmCalendar.set(year, month, day, selectedHour, selectedMinute, 0)
+                    setAlarm(alarmCalendar.timeInMillis, "Start")
+                    val time = SimpleDateFormat("hh:mm ss a", Locale.US).format(alarmCalendar.time)
+                    Toast.makeText(
+                        this,
+                        "Alarm set for\nTime: $time",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    listItems.add(alarm(alarmCalendar, true))
+                    alarm.setReminder(this, alarm(alarmCalendar, true))
+                    adapter.notifyDataSetChanged()
+
+                },
+                hour,
+                minute,
+                false
+            )
+
+            mTimePicker.setTitle("Select Time")
+            mTimePicker.show()
         }
 
-        var i=0L
-        while (sharedPreferences.getLong("time"+i,0)!= 0L)
-        {
-            val cale:Calendar= Calendar.getInstance()
-            cale.timeInMillis=sharedPreferences.getLong("time"+i,0L)
-            t_list.add(cale)
-            i+=1
-        }
 
         val bottomnavbar = findViewById<BottomNavigationView>(R.id.bottomnavbar)
         bottomnavbar.selectedItemId = R.id.alarm
@@ -73,6 +94,13 @@ class MainActivity : AppCompatActivity() {
 
                     return@setOnItemSelectedListener true
                 }
+                R.id.clock -> {
+                    Intent(this, WorldClock::class.java).apply {
+                        startActivity(this)
+                    }
+
+                    return@setOnItemSelectedListener true
+                }
                 else -> {
                     Intent(this, MainActivity::class.java).apply {
                         startActivity(this)
@@ -85,63 +113,65 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        val sharedPreferences: SharedPreferences = this.getSharedPreferences("myprefs", MODE_PRIVATE)
-        val editor:SharedPreferences.Editor =  sharedPreferences.edit()
-        for(i in 0..t.size)
-        {
-            val millis:Long=t.get(i).timeInMillis
-            editor.putLong("time"+i,millis)
-            editor.commit()
+
+    override fun onPause() {
+
+        sharedPreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply {
+            var x = 0
+            for (i in 0 until listItems.size) {
+                var millis: Long = listItems[i].time.timeInMillis
+                editor.putLong("time$i", millis)
+                editor.putBoolean("switch$i", listItems[i].isReminder)
+                x += 1
+                Log.d("TAG_MAIN_ACTIVITY_TEST", "onDestroy: ${millis}")
+            }
+            editor.putInt("index", x)
+
+
+        }.apply()
+        listItems.clear()
+        val i = sharedPreferences.getInt("index", 0)
+        Toast.makeText(applicationContext, "${i}", Toast.LENGTH_SHORT).show()
+        super.onPause()
+    }
+
+    override fun onStart() {
+
+        sharedPreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE)
+        val index = sharedPreferences.getInt("index", 0)
+        Toast.makeText(this, "$index", Toast.LENGTH_SHORT).show()
+        for (i in 0..index) {
+            val cal: Calendar = GregorianCalendar()
+            cal.timeInMillis = sharedPreferences.getLong("time$i", 0L)
+            val t = sharedPreferences.getLong("time$i", 0L)
+            Log.d("TAG_MAIN_ACTIVITY_TEST", "onCreate: ${t}")
+            val switch: Boolean = sharedPreferences.getBoolean("switch$i", false)
+            listItems.add(alarm(cal, switch))
         }
+        listItems.removeAt(listItems.size - 1)
+        super.onStart()
     }
 
-    fun showTimerDialog() {
-        val cldr: Calendar = Calendar.getInstance()
-        val hour: Int = cldr.get(Calendar.HOUR_OF_DAY)
-        val minutes: Int = cldr.get(Calendar.MINUTE)
-// time picker dialog
 
-        val picker = TimePickerDialog(
-            this,
-            { tp, sHour, sMinute -> sendDialogDataToActivity(sHour, sMinute) },
-            hour,
-            minutes,
-            true
-        )
-        picker.show()
-    }
 
-    private fun sendDialogDataToActivity(hour: Int, minute: Int) {
-        val alarmCalendar = Calendar.getInstance()
-        val year: Int = alarmCalendar.get(Calendar.YEAR)
-        val month: Int = alarmCalendar.get(Calendar.MONTH)
-        val day: Int = alarmCalendar.get(Calendar.DATE)
-        alarmCalendar.set(year, month, day, hour, minute, 0)
-        t.add(alarmCalendar)
-        val note = alarm(
-            alarmCalendar,
-            true
-        )
-        listItems.add(note)
-        alarm.setReminder(this, note)
-        adapter.notifyDataSetChanged()
-        setAlarm(alarmCalendar.timeInMillis, "Start")
-        Toast.makeText(
-            this,
-            "Time: hours:${hour}, minutes:${minute}, millis:${alarmCalendar.timeInMillis}",
-            Toast.LENGTH_SHORT
-        ).show()
-    }
 
     fun setAlarm(millisTime: Long, str: String) {
+
         val intent = Intent(this, AlarmBroadcastReceiver::class.java)
         intent.putExtra("Service1", str)
-        val pendingIntent = PendingIntent.getBroadcast(applicationContext, 234324243, intent, 0)
+        val pendingIntent =
+            PendingIntent.getBroadcast(applicationContext, 234324243, intent, 0)
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         if (str == "Start") {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, millisTime, pendingIntent)
+            alarmManager.setExact(
+                AlarmManager.RTC_WAKEUP,
+                millisTime,
+                pendingIntent
+            )
+            Log.d("DashboardTag", "setAlarm: Set Alarm")
         } else if (str == "Stop") {
             alarmManager.cancel(pendingIntent)
         }

@@ -4,7 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable-v24/gradient.xml" value="0.3141025641025641" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/alarm_gradient.xml" value="0.3141025641025641" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/alarm_gradient_1.xml" value="0.3141025641025641" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/alarm_wake_1.xml" value="0.3141025641025641" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/alarm_wake_2.xml" value="0.3141025641025641" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/alarm_wake_3.xml" value="0.3141025641025641" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/bottomnav_color.xml" value="0.18162393162393162" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/btn_gradient.xml" value="0.3141025641025641" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/cardview_design.xml" value="0.3141025641025641" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/circle.xml" value="0.3141025641025641" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/circular_progress.xml" value="0.3141025641025641" />
@@ -23,20 +29,27 @@
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/selector.xml" value="0.3141025641025641" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/drawable/shape.xml" value="0.3141025641025641" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_alarm_dialog.xml" value="0.297008547008547" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_alarm_wakeup.xml" value="0.30085470085470084" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_clock.xml" value="0.30085470085470084" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_fragment.xml" value="0.29615384615384616" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_main_activity2splash.xml" value="0.1683760683760684" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_ring.xml" value="0.30085470085470084" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_search.xml" value="0.30085470085470084" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_splash.xml" value="0.33" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_stopwatch.xml" value="0.30085470085470084" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_test.xml" value="0.30085470085470084" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_timer.xml" value="0.30085470085470084" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_timer_finish.xml" value="0.30085470085470084" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/activity_world_clock.xml" value="0.28931623931623934" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/alarm.xml" value="0.30085470085470084" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/alarm_time.xml" value="0.30085470085470084" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/fragment_alarm.xml" value="0.30085470085470084" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/fragment_timer.xml" value="0.30085470085470084" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/list_item.xml" value="0.29615384615384616" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/list_style.xml" value="0.30085470085470084" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/listitem.xml" value="0.30085470085470084" />
+        <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/searchitem.xml" value="0.30085470085470084" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/layout/set_alarm.xml" value="0.29615384615384616" />
         <entry key="..\:/college/SEM 5/MAD/clock/app/src/main/res/menu/bottom_nav.xml" value="0.30085470085470084" />
       </map>
