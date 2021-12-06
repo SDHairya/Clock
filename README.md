@@ -1,7 +1,6 @@
 # Clock
-# Clock
 
-How to Build this app
+##How to Build this app
 
 1. Open android studio and click on file on the menu bar, then click on new project from version control.
  ![alternatetext](https://firebasestorage.googleapis.com/v0/b/canvas-cursor-310208.appspot.com/o/1.png?alt=media&token=782e33d9-b77d-495a-9bca-24bab5f93b2a)
@@ -20,7 +19,7 @@ https://drive.google.com/file/d/1gTyego2ZnHZ9HiIV6XinMVOoMHxxYqI8/view?usp=shari
 
 **Note: After Downloading the app give it the permission to "Appear on Top"
 
-#Tech/Dependencies
+Tech/Dependencies
 
 1. Used Broadcast Receivers for working in background
  - AlarmBroadCast Receiver
