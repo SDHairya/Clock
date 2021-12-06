@@ -19,7 +19,7 @@ https://drive.google.com/file/d/1gTyego2ZnHZ9HiIV6XinMVOoMHxxYqI8/view?usp=shari
 
 **Note: After Downloading the app give it the permission to "Appear on Top"
 
-Tech/Dependencies
+link Tech/Dependencies
 
 1. Used Broadcast Receivers for working in background
  - AlarmBroadCast Receiver
